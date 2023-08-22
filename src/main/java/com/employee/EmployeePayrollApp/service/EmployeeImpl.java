@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -33,6 +34,11 @@ public class EmployeeImpl implements IEmployee {
     public List<Employee> getAllEmployeeData() {
   return (List<Employee>)
                 employeeRepo.findAll();
+    }
+
+    @Override
+    public Optional<Employee> getEmployeePayrollDataById(int empId) {
+        return employeeRepo.findById(empId);
     }
 
 }
