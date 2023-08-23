@@ -1,5 +1,6 @@
 package com.employee.EmployeePayrollApp.controller;
 
+import com.employee.EmployeePayrollApp.dao.Employeedao;
 import com.employee.EmployeePayrollApp.entity.Employee;
 import com.employee.EmployeePayrollApp.entity.ResponseDTO;
 import com.employee.EmployeePayrollApp.repository.EmployeeRepo;
@@ -56,6 +57,15 @@ public class EmployeeController {
     {
         employeeImpl.deleteEmployeePayrollData(empId);
         ResponseDTO respDTO = new ResponseDTO("Deleted Successfully", "Delete Id : " +empId);
+        return new ResponseEntity<ResponseDTO> (respDTO, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{empId}")
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId,
+                                                                 @RequestBody Employeedao employeedao)
+    {
+        Employee empData = employeeImpl.updateEmployeePayrollData(empId,employeedao);
+        ResponseDTO respDTO = new ResponseDTO("Updated Employee Payroll Data Successfully",empData);
         return new ResponseEntity<ResponseDTO> (respDTO, HttpStatus.OK);
     }
 

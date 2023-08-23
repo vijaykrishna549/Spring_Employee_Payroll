@@ -1,5 +1,6 @@
 package com.employee.EmployeePayrollApp.entity;
 
+import com.employee.EmployeePayrollApp.dao.Employeedao;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -37,5 +38,14 @@ public class Employee {
         this.note = employee.getNote();
         this.profilePic = employee.getProfilePic();
         this.department = employee.getDepartment();
+    }
+
+    public void updateEmployeePayrollData(Employeedao employeedao) {
+        this.name = employeedao.name;
+        this.gender = employeedao.gender;
+        this.startDate = employeedao.startDate;
+        this.note = employeedao.note;
+        this.profilePic = employeedao.profilePic;
+        this.department = employeedao.department;
     }
 }

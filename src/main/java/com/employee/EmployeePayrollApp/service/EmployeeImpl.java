@@ -1,6 +1,7 @@
 package com.employee.EmployeePayrollApp.service;
 
 
+import com.employee.EmployeePayrollApp.dao.Employeedao;
 import com.employee.EmployeePayrollApp.entity.Employee;
 import com.employee.EmployeePayrollApp.exceptions.EmployeePayrollException;
 import com.employee.EmployeePayrollApp.repository.EmployeeRepo;
@@ -45,6 +46,13 @@ public class EmployeeImpl implements IEmployee {
     public void deleteEmployeePayrollData(int empId) {
         Employee empData = this.getEmployeePayrollDataById(empId);
         employeeRepo.delete(empData);
+    }
+
+    @Override
+    public Employee updateEmployeePayrollData(int empId, Employeedao employeedao) {
+        Employee empData = this.getEmployeePayrollDataById(empId);
+        empData.updateEmployeePayrollData(employeedao);
+        return employeeRepo.save(empData);
     }
 
 //    @Override
