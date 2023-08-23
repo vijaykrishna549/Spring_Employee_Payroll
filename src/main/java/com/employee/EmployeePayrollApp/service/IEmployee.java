@@ -3,7 +3,6 @@ package com.employee.EmployeePayrollApp.service;
 import com.employee.EmployeePayrollApp.entity.Employee;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IEmployee {
 
@@ -11,7 +10,9 @@ public interface IEmployee {
 
     List<Employee> getAllEmployeeData();
 
-    Optional<Employee> getEmployeePayrollDataById(int empId);
+    Employee getEmployeePayrollDataById(int empId);
+
+    void deleteEmployeePayrollData(int empId);
 
 //    Employee getAllEmployeeData();
 }

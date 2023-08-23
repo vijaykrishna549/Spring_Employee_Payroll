@@ -2,13 +2,13 @@ package com.employee.EmployeePayrollApp.service;
 
 
 import com.employee.EmployeePayrollApp.entity.Employee;
+import com.employee.EmployeePayrollApp.exceptions.EmployeePayrollException;
 import com.employee.EmployeePayrollApp.repository.EmployeeRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -37,8 +37,20 @@ public class EmployeeImpl implements IEmployee {
     }
 
     @Override
-    public Optional<Employee> getEmployeePayrollDataById(int empId) {
-        return employeeRepo.findById(empId);
+    public Employee getEmployeePayrollDataById(int empId) {
+        return employeeRepo.findById(empId).orElseThrow(() -> new EmployeePayrollException("Employee with Found!!" + empId + "does not exists"));
     }
+
+    @Override
+    public void deleteEmployeePayrollData(int empId) {
+        Employee empData = this.getEmployeePayrollDataById(empId);
+        employeeRepo.delete(empData);
+    }
+
+//    @Override
+//    public void deleteEmployeePayrollData(int empId) {
+//        Optional<Employee> empDataList = getEmployeePayrollDataById(empId);
+//    employeeRepo.delete(empDataList);
+//    }
 
 }
